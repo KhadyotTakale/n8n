@@ -740,6 +740,12 @@ export class HttpRequestV2 implements INodeType {
 			const parametersAreJson = this.getNodeParameter('jsonParameters', itemIndex);
 
 			const options = this.getNodeParameter('options', itemIndex, {});
+			let url = this.getNodeParameter('url', itemIndex) as string;
+
+			url = url.trim();
+
+			if (!url) {
+				throw new NodeOperationError(this.getNode(), 'URL parameter cannot be empty');
 			const url = this.getNodeParameter('url', itemIndex);
 
 			if (typeof url !== 'string') {
